@@ -1,0 +1,28 @@
+{% extends "employe/base.html" %}
+
+{% block content %}
+<div class="w-full bg-base-200">
+    <div class="mb-4">
+        <a href="{%url 'employee_add' %}" class="btn btn-prmary w-full">Add an employee</a>
+    </div>
+    <div class="space-y-4 w-full">
+        {% for emp in employes %}
+        <div class="p-4 bg-base-100 rounded-lg w-full flex justify-between items-center">
+            <div class="space-y-2">
+                <p class="font-bold text-lg">{{emp.name}}</p>
+                <p class="badge badge-soft badge-primary">{{emp.email}}</p>
+                <div class="flex gap-2">
+                     <p class="font-bold text-lg">{{emp.post}}</p>
+                    <p class="badge badge-soft badge-primary">{{emp.salary}}$</p>
+                </div>
+            </div>
+              <div class="space-x-2">
+                 <a href="{% url 'modify_employee' emp.id %}" class="btn btn-primary btn-sm">Modify</a>
+                  <a href="{% url 'delete_employee' emp.id %}" class="btn btn-primary btn-soft btn-sm">Delete</a>
+              </div>
+        </div>
+    {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
